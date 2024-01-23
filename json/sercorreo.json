@@ -1,0 +1,8 @@
+{
+    "emailRemitente" : "lhernandezs331",
+    "servidorRemitente" : "gmail.com",
+    "nombreRemitente" : "lhernandezs@sena.edu.co",
+
+    "asunto" : "Asignacion fichas de formacion titulada",
+    "template" : "correoAsignacion.html"
+}
