@@ -1,7 +1,6 @@
-import os
+import os.path
 import csv
 
-from datetime       import date
 from correo         import Correo
 from modelo         import Instructor
 
@@ -31,9 +30,10 @@ class Robot:
             lisRowFichasInstructor = list(filter(lambda rowFicha: rowFicha['INSTRUCTOR_2024'] == rowInstructor['NOMBRE'], self._fichas))
             lisFichasInstructor = []
             for rowFichas in lisRowFichasInstructor:
-                lisFichasInstructor.append((rowFichas['NIVEL'], rowFichas['PROGRAMA'],rowFichas['FICHA'], rowFichas['FEC_INI'],'TECNICO', "TECNICAS"))
+                lisFichasInstructor.append((rowFichas['NIVEL'], rowFichas['PROGRAMA'],rowFichas['FICHA'], rowFichas['FEC_INI'], rowFichas['APRENDICES'],'TECNICO', "TECNICAS"))
             instructor = Instructor(instructor = rowInstructor['NOMBRE'], email = rowInstructor['CORREO'], fichas = lisFichasInstructor)
-            correo = Correo('lhernandezs', 'sena.edu.co', 'LeonardoSENA', instructor)
+            correo = Correo('lhernandezs', 'sena.edu.co', 'LeonardoSENA', instructor) # destino correo Leonardo
+            # correo = Correo('jpulgarin', 'sena.edu.co', 'Juan Camilo Pulgarin Vanegas', instructor) # destino correo Juan Camilo
             correo.build_email(user=instructor)  
 
 

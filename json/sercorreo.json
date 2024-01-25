@@ -1,8 +1,8 @@
 {
-    "emailRemitente" : "lhernandezs331",
+    "emailRemitente"    : "formacionvirtualcsf",
     "servidorRemitente" : "gmail.com",
-    "nombreRemitente" : "lhernandezs@sena.edu.co",
+    "nombreRemitente"   : "formacionvirtualcsf@sena.edu.co",
 
-    "asunto" : "Asignacion fichas de formacion titulada",
-    "template" : "correoAsignacion.html"
+    "asunto"            : "Asignacion fichas de formacion titulada",
+    "template"          : "correoAsignacion.html"
 }

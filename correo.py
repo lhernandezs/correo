@@ -4,7 +4,6 @@ import json
 
 from email.message          import EmailMessage
 from email.headerregistry   import Address
-from io                     import BytesIO
 from modelo                 import Instructor
 from jinja2                 import (Environment, select_autoescape, FileSystemLoader,)
 
@@ -13,8 +12,10 @@ class Correo:
     # variable de entorno para la API de jinja2
     ENV = Environment(loader=FileSystemLoader("templates"), autoescape=select_autoescape())
 
-    # constructor de la clase
+    # constructor de la clase - cada correo tiene un email que recibe, un servidor que recibe, un nombre del que recibe y el modelo con los datos
     def __init__(self, emaRec, serRec, namRec, modelo):
+
+        # lee desde un archivo json los datos del servidor de correo que remite
         with open(os.path.join('json', 'sercorreo.json'), 'r') as conex:
             arc = json.load(conex)
             conex.close()
@@ -29,7 +30,7 @@ class Correo:
         self._emaRec        = emaRec
         self._serRec        = serRec
         self._namRec        = namRec
-        
+
         self._modelo        = modelo
 
     # renderiza la plantilla -template- con los datos -modelo-
@@ -41,9 +42,10 @@ class Correo:
     # metodo que envia el email
     def send_email(self, email_message: EmailMessage):
         remitente = self._emaEnv + "@" + self._serEnv
-        destinatarios = [ self._emaRec + "@" + self._serRec ]
+        destinatarios = self._emaRec + "@" + self._serRec
         smtp = smtplib.SMTP_SSL("smtp.gmail.com")
-        smtp.login(remitente, "ghpflywujadbastq") # para que gmail pueda enviar correos desde un aplicativo externo se requiere una clave de 16 caracteres
+        # smtp.login(remitente, "ghpflywujadbastq") # para que gmail pueda enviar correos desde un aplicativo externo se requiere una clave de 16 caracteres
+        smtp.login(remitente, "bihnlljggmslwxvn") # para enviar correo desde la cuenta coordinacionvirtualcsf@gmail.com
         smtp.sendmail(remitente, destinatarios, email_message.as_string())
         smtp.quit()
 
